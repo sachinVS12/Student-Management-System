@@ -7,6 +7,6 @@ router.use(authenticate);
 
 router.get('/', studentController.getAllStudents);
 router.post('/', authorize('admin', 'teacher'), studentController.createStudent);
-// Add other routes
+// Add other routers
 
 module.exports = router;

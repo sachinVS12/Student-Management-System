@@ -9,4 +9,15 @@ exports.getAllStudents = async (req, res, next) => {
   }
 };
 
-// Add other CRUD operations (getById, create, update, delete)
+exports.createStudent = async (req, res, next) => {
+  try {
+    const { name, age, grade } = req.body;
+
+    const newStudent = new Student({ name, age, grade });
+    await newStudent.save();
+
+    res.status(201).json(newStudent);
+  } catch (err) {
+    next(err);
+  }
+};
