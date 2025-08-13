@@ -22,17 +22,6 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: 'Something broke!' });
 });
 
-//signup
-app.post("/signup", async (req, res) => {
-  try {
-    const { username, password } = req.body;
-    const user = new User({ username, password });
-    await user.save();
-    res.status(201).json({ message: "User created successfully" });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
