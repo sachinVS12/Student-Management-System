@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
 
+
 const app = express();
 
 // Connect to database
@@ -17,8 +18,8 @@ app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/students', require('./routes/studentRoutes'));
 app.use('/api/classes', require('./routes/classRoutes'));
 //app.use('/api/attendance', require('./routes/attendanceRoutes'));
-//app.use('/api/marks', require('./routes/markRoutes'));
-//app.use('/api/fees', require('./routes/feeRoutes'));
+app.use('/api/mark', require('./routes/markRoutes'));
+app.use('/api/fees', require('./routes/feeRoutes'));
 
 // Error handling middleware
 app.use((err, req, res, next) => {
