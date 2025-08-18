@@ -32,6 +32,13 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
+//appication
+app.post('/application', (req, res) => {
+  const{ email, password, name } = req.body;
+  res.json({ email, password, name });
+}
+)
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
