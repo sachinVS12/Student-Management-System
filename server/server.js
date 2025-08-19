@@ -27,17 +27,6 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: 'Something broke!' });
 });
 
-// Start the server doomy data
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
-
-//appication
-app.post('/application', (req, res) => {
-  const{ email, password, name } = req.body;
-  res.json({ email, password, name });
-}
-)
 
 
 const PORT = process.env.PORT || 5000;
