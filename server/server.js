@@ -27,5 +27,26 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: 'Something broke!' });
 });
 
+//sihnup ot is dommy
+exports.register = async (req, res, next) => {
+  try {
+    const { username, password, role } = req.body;
+    const user = await User.create({ username, password, role });
+    
+    const token = jwt.sign(
+      { userId: user._id, role: user.role },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
+    
+    res.status(201).json({ token });
+  } catch (err) {
+    next(err);
+  }
+};
+
+
+
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
