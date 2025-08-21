@@ -27,24 +27,6 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: 'Something broke!' });
 });
 
-//signup and language- signin
-exports.register = async (req, res, next) => {
-  try {
-    const { username, password, role } = req.body;
-    const user = await User.create({ username, password, role });
-    
-    const token = jwt.sign(
-      { userId: user._id, role: user.role },
-      process.env.JWT_SECRET,
-      { expiresIn: '1h' }
-    );
-    
-    res.status(201).json({ token });
-  } catch (err) {
-    next(err);
-  }
-};
-
 
 
 const PORT = process.env.PORT || 5000;
